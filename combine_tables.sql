@@ -1,4 +1,5 @@
 USE littlelemondm;
+-- Display all the records from the table.
 SELECT Menu.MenuID, MenuItems.ItemID, MenuItems.CourseName, Orders.OrderID, Orders.BillAmount, Delivery.DeliveryStatus, 
 Delivery.DeliveryDate, Bookings.BookingID, Bookings.BookingDate, Customers.CustomerID, Customers.CustomerName, 
 Staff.StaffID, Staff.EmployeeName
