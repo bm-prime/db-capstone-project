@@ -37,7 +37,7 @@ DROP TABLE IF EXISTS `LittleLemonDM`.`Staff` ;
 CREATE TABLE IF NOT EXISTS `LittleLemonDM`.`Staff` (
   `StaffID` INT NOT NULL,
   `Name` VARCHAR(255) NOT NULL,
-  `Role` VARCHAR(200) NOT NULL,
+  `StaffRole` VARCHAR(200) NOT NULL,
   `Adderss` VARCHAR(255) NOT NULL,
   `ConatctNumber` INT NOT NULL,
   `Email` VARCHAR(255) NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `LittleLemonDM`.`Bookings` (
   `BookingID` INT NOT NULL,
   `CustomerID` INT NOT NULL,
   `StaffID` INT NOT NULL,
-  `Date` DATE NOT NULL,
+  `BookingDate` DATE NOT NULL,
   `TableNo` INT NOT NULL,
   PRIMARY KEY (`BookingID`),
   INDEX `fk_customerID_idx` (`CustomerID` ASC) VISIBLE,
@@ -80,9 +80,9 @@ DROP TABLE IF EXISTS `LittleLemonDM`.`Delivery` ;
 
 CREATE TABLE IF NOT EXISTS `LittleLemonDM`.`Delivery` (
   `DeliveryID` INT NOT NULL,
-  `Date` DATE NOT NULL,
-  `Address` VARCHAR(255) NOT NULL,
-  `Status` VARCHAR(100) NOT NULL,
+  `DeliveryDate` DATE NOT NULL,
+  `DeliveryAddress` VARCHAR(255) NOT NULL,
+  `DeliveryStatus` VARCHAR(100) NOT NULL,
   `DeliveryPrice` DECIMAL NOT NULL,
   PRIMARY KEY (`DeliveryID`))
 ENGINE = InnoDB;
@@ -96,7 +96,7 @@ DROP TABLE IF EXISTS `LittleLemonDM`.`MenuItems` ;
 CREATE TABLE IF NOT EXISTS `LittleLemonDM`.`MenuItems` (
   `ItemID` INT NOT NULL,
   `CourseName` VARCHAR(100) NOT NULL,
-  `Type` VARCHAR(100) NOT NULL,
+  `MenuType` VARCHAR(100) NOT NULL,
   `Price` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`ItemID`))
 ENGINE = InnoDB;
