@@ -15,6 +15,21 @@ CREATE SCHEMA IF NOT EXISTS `LittleLemonDM` DEFAULT CHARACTER SET utf8 ;
 USE `LittleLemonDM` ;
 
 -- -----------------------------------------------------
+-- Table `LittleLemonDM`.`Customers`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `LittleLemonDM`.`Customers` ;
+
+CREATE TABLE IF NOT EXISTS `LittleLemonDM`.`Customers` (
+  `CustomerID` INT NOT NULL,
+  `FirstName` VARCHAR(255) NOT NULL,
+  `LastName` VARCHAR(255) NOT NULL,
+  `ContactNumber` INT NOT NULL,
+  `Email` VARCHAR(255) NULL,
+  PRIMARY KEY (`CustomerID`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `LittleLemonDM`.`Staff`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `LittleLemonDM`.`Staff` ;
@@ -38,11 +53,18 @@ DROP TABLE IF EXISTS `LittleLemonDM`.`Bookings` ;
 
 CREATE TABLE IF NOT EXISTS `LittleLemonDM`.`Bookings` (
   `BookingID` INT NOT NULL,
+  `CustomerID` INT NOT NULL,
   `StaffID` INT NOT NULL,
   `Date` DATE NOT NULL,
   `TableNo` INT NOT NULL,
   PRIMARY KEY (`BookingID`),
+  INDEX `fk_customerID_idx` (`CustomerID` ASC) VISIBLE,
   INDEX `fk_staffID_idx` (`StaffID` ASC) VISIBLE,
+  CONSTRAINT `fk_customerID`
+    FOREIGN KEY (`CustomerID`)
+    REFERENCES `LittleLemonDM`.`Customers` (`CustomerID`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_staffID`
     FOREIGN KEY (`StaffID`)
     REFERENCES `LittleLemonDM`.`Staff` (`StaffID`)
@@ -101,21 +123,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `LittleLemonDM`.`Customers`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `LittleLemonDM`.`Customers` ;
-
-CREATE TABLE IF NOT EXISTS `LittleLemonDM`.`Customers` (
-  `CustomerID` INT NOT NULL,
-  `FirstName` VARCHAR(255) NOT NULL,
-  `LastName` VARCHAR(255) NOT NULL,
-  `ContactNumber` INT NOT NULL,
-  `Email` VARCHAR(255) NULL,
-  PRIMARY KEY (`CustomerID`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `LittleLemonDM`.`Orders`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `LittleLemonDM`.`Orders` ;
@@ -128,12 +135,11 @@ CREATE TABLE IF NOT EXISTS `LittleLemonDM`.`Orders` (
   `DeliveryID` INT NOT NULL,
   `Quantity` INT NOT NULL,
   `BillAmount` DECIMAL NOT NULL,
-  `Orderscol` VARCHAR(45) NULL,
   PRIMARY KEY (`OrderID`),
   INDEX `fk_bookingID_idx` (`BookingID` ASC) VISIBLE,
   INDEX `fk_deliveryID_idx` (`DeliveryID` ASC) VISIBLE,
   INDEX `fk_menuID_idx` (`MenuID` ASC) VISIBLE,
-  INDEX `fk_cutomerID_idx` (`CustomerID` ASC) VISIBLE,
+  INDEX `fk_customerID_idx` (`CustomerID` ASC) VISIBLE,
   CONSTRAINT `fk_bookingID`
     FOREIGN KEY (`BookingID`)
     REFERENCES `LittleLemonDM`.`Bookings` (`BookingID`)
@@ -149,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `LittleLemonDM`.`Orders` (
     REFERENCES `LittleLemonDM`.`Menu` (`MenuID`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `fk_cutomerID`
+  CONSTRAINT `fk_customerID_orders`
     FOREIGN KEY (`CustomerID`)
     REFERENCES `LittleLemonDM`.`Customers` (`CustomerID`)
     ON DELETE CASCADE
