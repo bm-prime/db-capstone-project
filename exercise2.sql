@@ -1,3 +1,5 @@
+USE littlelemondm;
+-- create a procedure to check if a table is booked
 DROP PROCEDURE IF EXISTS CheckBooking;
 DELIMITER //
 CREATE PROCEDURE CheckBooking(IN b_date DATE, IN table_no INT)
@@ -10,7 +12,7 @@ ELSE 'Table is free to book'
 END AS BookingStatus FROM Bookings WHERE TableNO = table_no AND BookingDate = b_date;
 END//
 CALL CheckBooking('2022-10-13', 15);
-USE littlelemondm;
+-- create a procedure to add a booking
 DROP PROCEDURE IF EXISTS AddValidBooking;
 DELIMITER //
 CREATE PROCEDURE AddValidBooking(IN b_date DATE, IN table_no INT)
