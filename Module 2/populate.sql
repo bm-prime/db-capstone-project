@@ -18,7 +18,6 @@ VALUES
 (15, 'Turkish Coffee', 'Drinks', 10),
 (16, 'Turkish Coffee', 'Drinks', 10),
 (17, 'Kabasa', 'Main Courses', 17);
-SELECT * FROM MenuItems;
 INSERT INTO Menu (MenuID,ItemID,Cuisine)
 VALUES
 (1, 1, 'Greek'),
@@ -33,7 +32,6 @@ VALUES
 (3, 17, 'Turkish'),
 (3, 11, 'Turkish'),
 (3, 16, 'Turkish');
-SELECT * FROM Menu;
 INSERT INTO Staff (StaffID, EmployeeName, EmployeeRole, ContactNumber, Email, AnnualSalary)
 VALUES
 (01,'Mario Gollini','Manager',351258074,'Mario.g@littlelemon.com',70000),
@@ -42,7 +40,6 @@ VALUES
 (04,'Fatma Kaya','Assistant Chef',351963569,'Fatma.k@littlelemon.com',45000),
 (05,'Elena Salvai','Head Waiter',351074198,'Elena.s@littlelemon.com',40000),
 (06,'John Millar','Receptionist',351584508,'John.m@littlelemon.com',35000);
-SELECT * FROM Staff;
 INSERT INTO Customers(CustomerID, CustomerName, ContactNumber, Email)
 VALUES
 (2,'Anna Iversen', 126636738, 'Anna2000@gmail.com'),
@@ -50,7 +47,6 @@ VALUES
 (16,'Vanessa McCarthy', 102947033, 'VanessaCarthy@yahoo.com'),
 (17,'Marcos Romero', 137390389, 'Mark23rome@pm.me'),
 (18,'Hiroki Yamane', 384349839, 'Hiroki@yamane.com');
-SELECT * FROM Customers;
 INSERT INTO Bookings (BookingID, TableNo, CustomerID, BookingDate, StaffID)
 VALUES
 (1, 12, 2,'2022-10-10',1),
@@ -58,7 +54,6 @@ VALUES
 (3, 19, 16, '2022-10-11', 3),
 (4, 15,  17, '2022-10-13', 4),
 (5, 5,  18, '2022-10-13', 2);
-SELECT * FROM bookings;
 INSERT INTO Delivery(DeliveryID, DeliveryDate, DeliveryAddress, DeliveryStatus, DeliveryPrice)
 VALUES 
 (12, '2022-10-11', '724, Parsley Lane, Old Town, Chicago, IL', 'Pending', 12),
@@ -66,7 +61,6 @@ VALUES
 (15, '2022-10-13', '879 Sage Street, West Loop, Chicago, IL', 'Pending', 10),
 (5, '2022-10-01', '132  Bay Lane, Chicago, IL', 'Delivered', 25),
 (8, '2022-10-06', '989 Thyme Square, EdgeWater, Chicago, IL', 'Delivered', 18);
-SELECT * FROM Delivery;
 INSERT INTO Orders (OrderID, DeliveryID, MenuID, BookingID, Quantity, BillAmount)
 VALUES
 (1, 12, 1, 1, 2, 86),
@@ -74,4 +68,3 @@ VALUES
 (3, 15, 2, 3, 1, 37),
 (4, 5, 3, 4, 1, 40),
 (5, 8, 1, 5, 1, 43);
-SELECT * FROM Orders;
